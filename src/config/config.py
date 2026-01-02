@@ -851,7 +851,7 @@ def get_project_root() -> Path:
     current = Path(__file__).resolve()
     for parent in [current] + list(current.parents):
         if (parent / "config").exists():
-            return parent.parent
+            return parent.parent    
     raise RuntimeError("Could not find project root directory")
 
 
@@ -918,7 +918,7 @@ def get_config() -> Config:
         get_config._config = load_config()
         create_directories_from_config(get_config._config)
     return get_config._config
-
+    
 
 def get_secrets() -> Dict:
     if not hasattr(get_secrets, "_secrets"):

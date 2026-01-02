@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-01-02T17:11:27.887720",
+  "steps_completed": [
+    "date_conversion",
+    "merge_datasets",
+    "detect_outliers",
+    "add_basic_features"
+  ],
+  "statistics": {
+    "raw_sales_rows": 730500,
+    "raw_calendar_rows": 1461,
+    "merged_rows": 730500,
+    "outliers_detected": 12893,
+    "outlier_percentage": 1.764955509924709,
+    "final_rows": 730500,
+    "final_columns": 19,
+    "file_size_mb": 1.7594165802001953
+  }
+}

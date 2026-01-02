@@ -1,0 +1,39 @@
+{
+  "generation_timestamp": "2026-01-02T17:11:27.389864",
+  "data_version": "1.0.0",
+  "config_version": "1.0.0",
+  "sales_data": {
+    "num_records": 730500,
+    "num_stores": 10,
+    "num_items": 50,
+    "date_range": {
+      "start": "2021-01-01",
+      "end": "2024-12-31"
+    },
+    "sales_stats": {
+      "mean": 137.26563321013006,
+      "std": 91.84573342756181,
+      "min": 3.09,
+      "max": 2043.71
+    },
+    "anomalies": {
+      "count": 36500,
+      "percentage": 4.996577686516085
+    }
+  },
+  "calendar_data": {
+    "num_records": 1461,
+    "num_holidays": 16,
+    "num_weekends": 418
+  },
+  "generation_parameters": {
+    "start_date": "2021-01-01",
+    "end_date": "2024-12-31",
+    "num_stores": 10,
+    "num_items": 50,
+    "seasonality_strength": 0.3,
+    "trend_strength": 0.2,
+    "noise_level": 0.1,
+    "anomaly_percentage": 0.05
+  }
+}

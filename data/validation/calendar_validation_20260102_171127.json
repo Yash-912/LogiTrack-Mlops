@@ -1,0 +1,60 @@
+{
+  "data_type": "calendar",
+  "timestamp": "2026-01-02T17:11:27.861772",
+  "total_checks": 10,
+  "passed_checks": 10,
+  "failed_checks": 0,
+  "expectations": [
+    {
+      "name": "date column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "day_of_week column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "is_holiday column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "is_weekend column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "date has no nulls",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "day_of_week is 0-6",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "is_holiday is boolean",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "is_weekend is boolean",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "dates are unique",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "weekend matches day_of_week",
+      "passed": true,
+      "status": "\u2705"
+    }
+  ],
+  "pass_rate": 1.0
+}

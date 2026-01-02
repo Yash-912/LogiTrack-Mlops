@@ -1,0 +1,100 @@
+{
+  "data_type": "raw",
+  "timestamp": "2026-01-02T17:11:27.745658",
+  "total_checks": 18,
+  "passed_checks": 18,
+  "failed_checks": 0,
+  "expectations": [
+    {
+      "name": "date column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "store_id column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "item_id column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales column exists",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "date has no nulls",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "store_id has no nulls",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "item_id has no nulls",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales has no nulls",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales is numeric",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "store_id is numeric",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "item_id is numeric",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales >= 0",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "store_id > 0",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "item_id > 0",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales has reasonable mean (10-500)",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales std > 0",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "no duplicate rows",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "dates are in order",
+      "passed": true,
+      "status": "\u2705"
+    }
+  ],
+  "pass_rate": 1.0
+}

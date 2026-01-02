@@ -1,0 +1,50 @@
+{
+  "data_type": "processed",
+  "timestamp": "2026-01-02T17:11:29.785417",
+  "total_checks": 8,
+  "passed_checks": 8,
+  "failed_checks": 0,
+  "expectations": [
+    {
+      "name": "has date column",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "has sales column",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "has store_id column",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "has item_id column",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "no nulls in sales",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "no nulls in date features",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "no infinite values in sales",
+      "passed": true,
+      "status": "\u2705"
+    },
+    {
+      "name": "sales variance > 0",
+      "passed": true,
+      "status": "\u2705"
+    }
+  ],
+  "pass_rate": 1.0
+}
