@@ -1,0 +1,215 @@
+# Main Configuration File for Supply Chain MLOps Project
+# This file contains all project-wide settings
+
+# Project Metadata
+project:
+  name: "supply-chain-mlops"
+  version: "1.0.0"
+  description: "Intelligent Supply Chain Forecasting System"
+
+# Data Configuration
+data:
+  # Raw data paths
+  raw_dir: "data/raw"
+  raw_sales: "data/raw/sales_data.csv"
+  raw_calendar: "data/raw/calendar_data.csv"
+  
+  # Processed data paths
+  processed_dir: "data/processed"
+  processed_data: "data/processed/processed_data.parquet"
+  
+  # Validation paths
+  validation_dir: "data/validation"
+  
+  # Data generation parameters
+  generation:
+    start_date: "2021-01-01"
+    end_date: "2024-12-31"
+    num_stores: 10
+    num_items: 50
+    seasonality_strength: 0.3
+    trend_strength: 0.2
+    noise_level: 0.1
+    anomaly_percentage: 0.05
+
+# Feature Engineering Configuration
+features:
+  # Lag features
+  lag_windows: [7, 14, 28]
+  
+  # Rolling window features
+  rolling_windows: [7, 14, 30]
+  rolling_stats: ["mean", "std", "min", "max"]
+  
+  # Date features
+  extract_date_features: true
+  cyclical_encoding: true
+  
+  # Feature selection
+  use_feature_selection: true
+  selection_method: "mutual_info"  # Options: mutual_info, correlation, model_based
+  max_features: 50
+  
+  # Train/validation/test split
+  train_size: 0.7
+  val_size: 0.15
+  test_size: 0.15
+
+# Model Configuration
+model:
+  # Model type
+  forecasting_model: "xgboost"  # Options: xgboost, lightgbm, random_forest
+  anomaly_model: "isolation_forest"  # Options: isolation_forest, autoencoder
+  
+  # XGBoost hyperparameters (default values)
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    min_child_weight: 1
+    gamma: 0
+    objective: "reg:squarederror"
+    random_state: 42
+    n_jobs: -1
+  
+  # Isolation Forest parameters
+  isolation_forest:
+    n_estimators: 100
+    max_samples: 256
+    contamination: 0.05
+    random_state: 42
+    n_jobs: -1
+  
+  # Hyperparameter tuning
+  tuning:
+    enabled: false
+    n_trials: 50
+    timeout: 3600  # seconds
+    
+# MLflow Configuration
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "supply-chain-forecasting"
+  artifact_location: "./mlruns"
+  backend_store_uri: "sqlite:///mlflow.db"
+  
+  # Model registry
+  registry:
+    staging_alias: "staging"
+    production_alias: "production"
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 4
+  timeout: 30
+  
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+    
+  # CORS settings
+  cors:
+    enabled: true
+    allow_origins: ["http://localhost:3000", "http://localhost:8000"]
+    allow_methods: ["GET", "POST", "PUT", "DELETE"]
+    allow_headers: ["*"]
+
+# Monitoring Configuration
+monitoring:
+  # Prometheus
+  prometheus:
+    enabled: true
+    port: 9090
+    
+  # Metrics collection
+  collect_predictions: true
+  collect_latency: true
+  collect_errors: true
+  
+  # Performance thresholds
+  thresholds:
+    max_latency_ms: 200
+    max_error_rate: 0.01
+    min_accuracy: 0.85
+    
+  # Drift detection
+  drift:
+    enabled: true
+    check_interval_hours: 24
+    drift_threshold: 0.05
+    reference_window_days: 30
+    
+  # Alerting
+  alerts:
+    enabled: true
+    email_enabled: false
+    slack_enabled: false
+
+# Retraining Configuration
+retraining:
+  # Triggers
+  time_based:
+    enabled: true
+    interval_days: 7
+    
+  performance_based:
+    enabled: true
+    rmse_threshold_increase: 0.15  # 15% increase triggers retraining
+    
+  drift_based:
+    enabled: true
+    num_drifted_features_threshold: 5
+    
+  data_volume:
+    enabled: true
+    min_new_samples: 1000
+
+# Database Configuration
+database:
+  type: "sqlite"  # Options: sqlite, postgresql, mysql
+  sqlite:
+    path: "data/supply_chain.db"
+  
+  # For PostgreSQL (when needed)
+  postgresql:
+    host: "localhost"
+    port: 5432
+    database: "supply_chain_db"
+    username: "mlops_user"
+    # password loaded from secrets
+
+# Logging Configuration
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "json"  # Options: json, text
+  log_dir: "logs"
+  log_file: "logs/app.log"
+  rotation: "1 day"
+  retention: "30 days"
+
+# Testing Configuration
+testing:
+  test_data_size: 1000
+  random_seed: 42
+  
+# Deployment Configuration
+deployment:
+  environment: "development"  # Options: development, staging, production
+  
+  docker:
+    image_name: "supply-chain-mlops"
+    image_tag: "latest"
+    
+  kubernetes:
+    namespace: "ml-platform"
+    replicas: 3
+    cpu_request: "500m"
+    cpu_limit: "2000m"
+    memory_request: "1Gi"
+    memory_limit: "4Gi"

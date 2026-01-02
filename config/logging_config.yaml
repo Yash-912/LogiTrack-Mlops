@@ -1,0 +1,104 @@
+# Logging Configuration
+# Controls how application logs are formatted and stored
+
+version: 1
+disable_existing_loggers: false
+
+# Define log formatters
+formatters:
+  # Simple text format for console
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  # Detailed format for files
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(funcName)s() - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  # JSON format for structured logging (machine-readable)
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: '%(asctime)s %(name)s %(levelname)s %(message)s'
+
+# Define log handlers (where logs go)
+handlers:
+  # Console output (terminal)
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stdout
+  
+  # File output for all logs
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/app.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf8
+  
+  # Separate file for errors only
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/error.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf8
+  
+  # JSON file for structured logging (for log aggregation tools)
+  json_file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/app.json
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf8
+
+# Configure root logger
+root:
+  level: INFO
+  handlers: [console, file, error_file]
+
+# Configure specific loggers for different modules
+loggers:
+  # Data processing logs
+  src.data:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # Model training logs
+  src.models:
+    level: INFO
+    handlers: [console, file, json_file]
+    propagate: false
+  
+  # API logs
+  src.api:
+    level: INFO
+    handlers: [console, file, json_file]
+    propagate: false
+  
+  # Monitoring logs
+  src.monitoring:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+  
+  # Uvicorn logs (API server)
+  uvicorn:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+  
+  # SQLAlchemy logs (database)
+  sqlalchemy:
+    level: WARNING
+    handlers: [console, file]
+    propagate: false
